@@ -46,7 +46,7 @@
             }
             cities().catch((error) => console.error(error));
             async function weather(ciudad) {
-                const key = "";
+                const key = "dcc23f23efe3cff1e7ba81b9ac56ac4d";
                 const segundo = await fetch("https://api.openweathermap.org/data/2.5/weather?q=" + ciudad + ",cl&units=metric&appid=" + key + "&lang=es");
                 const tiempo = await segundo.json();
                 console.log(tiempo);
