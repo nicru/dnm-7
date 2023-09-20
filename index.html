@@ -1,33 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="stylesheet" href="style.css" />
-        <title>DNOO37</title>
-    </head>
-    <body>
-        <nav>
-            <h1><a href="index.html">Nicolás Cruzat</a></h1>
-            <select onchange="location = this.value;">
-                <option value="index.html" selected>INDEX</option>
-                <option value="astrology.html">ASTROLOGY</option>
-                <option value="astronomy.html">ASTRONOMY</option>
-                <option value="earthquakes.html">EARTHQUAKES</option>
-                <option value="weather.html">WEATHER</option>
-            </select>
-        </nav>
-        <section style="min-height: 80vh">
-            <blockquote><div id="loader"></div></blockquote>
-        </section>
-        <footer>
-            <a href="https://github.com/profesorfaco/dno037-2023-2">Diseño y nuevos medios</a>
-            <a href="https://github.com/profesorfaco/dno037-2023-2/tree/main/clase-07">20 de septiembre, 2023</a>
-        </footer>
-        <script>
-            const datos = {motivo:"Como es habitual, aquí irá el motivo por el que siguen en el OPR, pero tendrán que buscar la manera de resolverlo con una consulta al JSON que prepararán como curso, partiendo en la página <a href='extra.html'>*EXTRA</a>"}
-            document.querySelector("#loader").style.display = "none";
-            document.querySelector("blockquote").innerHTML = `${datos.motivo}`;
-        </script>
-    </body>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="style.css" />
+    <title>DNOO37</title>
+</head>
+<body>
+    <nav>
+        <h1><a href="index.html">Nicolás Cruzat</a></h1>
+        <select onchange="location = this.value;">
+            <option value="index.html" selected>INDEX</option>
+            <option value="astrology.html">ASTROLOGY</option>
+            <option value="astronomy.html">ASTRONOMY</option>
+            <option value="earthquakes.html">EARTHQUAKES</option>
+            <option value="weather.html">WEATHER</option>
+        </select>
+    </nav>
+    <section style="min-height: 80vh">
+        <blockquote><div id="loader"></div></blockquote>
+    </section>
+    <footer>
+        <a href="https://github.com/profesorfaco/dno037-2023-2">Diseño y nuevos medios</a>
+        <a href="https://github.com/profesorfaco/dno037-2023-2/tree/main/clase-07">20 de septiembre, 2023</a>
+    </footer>
+    <script>            
+        const alternativas = document.querySelector("header");
+        const detalles = document.querySelector("aside");
+        const respuesta = document.querySelector("main");
+        var datos;
+        
+        async function estudiantes() {
+            const data = await fetch("https://raw.githubusercontent.com/profesorfaco/dno037-2023-2/main/clase-07/_curso.json");
+            datos = await data.json();
+            document.querySelector("blockquote").innerHTML = `${datos[17].motivo}`;
+        }
+        
+        estudiantes().catch((error) => console.error(error));
+        document.querySelector("#loader").style.display = "none";
+    </script>
+</body>
 </html>
